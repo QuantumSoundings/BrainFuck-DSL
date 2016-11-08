@@ -1,5 +1,5 @@
 import bfdsl._
-import macros._
+import Macros._
 import scala.language.postfixOps
 
 
