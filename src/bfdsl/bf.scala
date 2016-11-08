@@ -1,8 +1,8 @@
 package bfdsl
 import java.util.ArrayList
-class BF {
-  
-  
+
+
+class BF {  
   object START {
     var words = new ArrayList[StateWord]
     var mem:Array[Int] = Array.ofDim[Int](40)
@@ -256,7 +256,7 @@ class BF {
        return i-1
     
     }
-    
+     
   }
 
   
