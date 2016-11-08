@@ -1,65 +1,123 @@
 package bfdsl
-
+import java.util.ArrayList
 class BF {
+  
+  
   object START {
-    var mem:Array[Int] = Array.ofDim[Int](3000)
+    var words = new ArrayList[StateWord]
+    var mem:Array[Int] = Array.ofDim[Int](40)
     var pointer =0
     def A(word:StateWord) ={
-      mem(pointer)+=1
-      matchCase(word)
-      this
-    }
-    def | ={
+      words.add(bfdsl.A)
+      words.add(word)
+      word match{
+        case bfdsl.END => eval
+        case _ =>;
+      }
       this
     }
     def A = {
-      mem(pointer)+=1
+      words.add(bfdsl.A)
       this
     }
     def M(word:StateWord) = {
-      //if(mem(pointer)>0)
-        mem(pointer)-=1
-        //println(mem(pointer))
-     // else
-      //  mem(pointer)=0
-      matchCase(word)
+      words.add(bfdsl.M)
+      words.add(word)
+      word match{
+        case bfdsl.END => eval
+        case _ =>;
+      }
       this
     }
     def M ={
-     // if(mem(pointer)>0)
-        mem(pointer)-=1
-     // else
-     //   mem(pointer)=0
+     words.add(bfdsl.M)
       this
     }
     def P(word:StateWord) = {
-      print(mem(pointer).asInstanceOf[Char])
-      matchCase(word)
+      words.add(bfdsl.P)
+      words.add(word)
+      word match{
+        case bfdsl.END => eval
+        case _ =>;
+      }
       this
     }
     def P = {
-      print(mem(pointer).asInstanceOf[Char])
+      words.add(bfdsl.P)
       this
     }
     def L(word:StateWord) = {
-      pointer -=1
-      matchCase(word)
+      words.add(bfdsl.L)
+      words.add(word)
+      word match{
+        case bfdsl.END => eval
+        case _ =>;
+      }
       this
-      
     }
     def L ={
-      pointer -=1
+      words.add(bfdsl.L)
       this
     }
     def R(word:StateWord) ={
-      pointer +=1
-      matchCase(word)
+      words.add(bfdsl.R)
+      words.add(word)
+      word match{
+        case bfdsl.END => eval
+        case _ =>;
+      }
       this
     }
     def R={
-      pointer+=1
+      words.add(bfdsl.R)
       this
     }
+    def X(word:StateWord) = {
+      words.add(bfdsl.LS)
+      words.add(word)
+      word match{
+        case bfdsl.END => eval
+        case _ =>;
+      }
+      this
+    }
+    def X = {
+      words.add(bfdsl.LS)
+      this
+    }
+    def C(word:StateWord) ={
+      words.add(bfdsl.LE)
+      words.add(word)
+      word match{
+        case bfdsl.END => eval
+        case _ =>;
+      }
+      this
+    }
+    def C ={
+      words.add(bfdsl.LE)
+    }
+    def eval ={
+      for(arg<-words.toArray()){
+        arg match {
+          case bfdsl.A => print("+")
+          case bfdsl.M => print("-")
+          case bfdsl.P => print(".")
+          case bfdsl.I => print(",")
+          case bfdsl.L => print("<")
+          case bfdsl.R => print(">")
+          case bfdsl.LS => print("[")
+          case bfdsl.LE => print("]")
+          case bfdsl.X => print("[")
+          case bfdsl.C => print("]")
+        }
+      }
+        
+    }
+    
+    
+    
+    
     def LS(words:StateWord*) = {
       var i = 0
       while(i<words.size){
@@ -91,10 +149,11 @@ class BF {
     def E(word:StateWord) = {
       this
     }
-    def E ={
+    def END ={
+      eval
       this
     }
-    def Lx(words:StateWord*) ={
+    def Lx(words:StateWord*):StateWord ={
        var i = 0
       // println("IN A LOOP")
      if(mem(pointer)!=0)
@@ -131,7 +190,7 @@ class BF {
         i+=1
       }
        
-      this
+      return bfdsl.NULL
     }
     
     def LSR(words:Array[StateWord]):Int = {
