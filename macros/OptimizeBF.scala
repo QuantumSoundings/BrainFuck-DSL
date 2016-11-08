@@ -1,4 +1,5 @@
-package optim
+package macros
+
 import java.util.ArrayList
 object OptimizeBF {
 

@@ -1,11 +1,12 @@
-import scala.reflect.macros.blackbox
+package macros
 import scala.language.experimental.macros
-import optim._
+import scala.reflect.macros.blackbox
+
 object Macros {
   def doBrainFuck(s:String):Unit =macro doBFImpl
   def doBFImpl(c: blackbox.Context)(s: c.Expr[String]): c.Expr[Unit] = {
     import c.universe._
-    var z = optim.OptimizeBF.replacements(s.toString().substring(15, s.toString.length-2).replaceAll(" ", "").replaceAllLiterally(" ", ""))
+    var z = OptimizeBF.replacements(s.toString().substring(15, s.toString.length-2).replaceAll(" ", "").replaceAllLiterally(" ", ""))
     var t = new Base64
     var temp = ""
     for(x<- 0 to 61){

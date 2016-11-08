@@ -1,6 +1,7 @@
 import bfdsl._
-import Macros._
+import macros._
 import scala.language.postfixOps
+
 
 /*object tester extends bftake2 {
   def main(args: Array[String]):Unit = {
