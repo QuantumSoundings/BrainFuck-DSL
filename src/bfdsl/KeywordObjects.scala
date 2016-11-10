@@ -16,3 +16,5 @@ object LE extends StateWord
 object | extends StateWord
 object C extends StateWord
 object X extends StateWord
+object FUN extends StateWord
+object + extends StateWord

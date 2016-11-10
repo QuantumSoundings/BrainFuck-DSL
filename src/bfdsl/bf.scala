@@ -1,264 +1,208 @@
 package bfdsl
 import java.util.ArrayList
+class node(word:StateWord){
+  var value=word
+  var nextNode: node = _;
+  var jumpPtr : node = _;
+  var funchar:Char = _;
+}
 
-
-class BF {  
+class BF { 
+  
+  
+      
+  
   object START {
+    var firstNode:node = new node(NULL);
+    var currentNode:node = new node(NULL);
+    var parenstack = new scala.collection.mutable.Stack[node]
     var words = new ArrayList[StateWord]
-    var mem:Array[Int] = Array.ofDim[Int](40)
+    var mem:Array[Int] = Array.ofDim[Int](3000)
     var pointer =0
-    def A(word:StateWord) ={
-      words.add(bfdsl.A)
-      words.add(word)
-      word match{
-        case bfdsl.END => eval
-        case _ =>;
+    var funChar = '-'
+    
+    def nodeupdate(word:StateWord){
+      currentNode.value match{
+        case NULL => {          
+          currentNode= new node(word)
+          firstNode.nextNode = currentNode
+          if(currentNode.value.eq(bfdsl.X))
+            parenstack.push(currentNode)
+          else if (currentNode.value.eq(bfdsl.C)){
+            currentNode.jumpPtr=parenstack.pop()
+          }
+        }
+        case _ => {
+          currentNode.nextNode=new node(word)
+          currentNode = currentNode.nextNode
+          if(currentNode.value.eq(bfdsl.X))
+            parenstack.push(currentNode)
+          else if (currentNode.value.eq(bfdsl.C)){
+            currentNode.jumpPtr=parenstack.pop()
+            currentNode.jumpPtr.jumpPtr=currentNode
+          }
+        }
       }
+    }
+    def eval ={
+      currentNode=firstNode
+      while(!currentNode.value.eq(bfdsl.END)){
+        //println(currentNode.value)
+        currentNode.value match {
+          case bfdsl.A => mem(pointer)+=1
+          case bfdsl.M => mem(pointer)-=1
+          case bfdsl.P => print(mem(pointer).asInstanceOf[Char])
+          case bfdsl.I => print(",")
+          case bfdsl.L => pointer-=1
+          case bfdsl.R => pointer+=1
+          case bfdsl.LS => {
+            if(mem(pointer)==0){
+              currentNode=currentNode.jumpPtr
+            }
+          }
+          case bfdsl.LE =>{
+            if(mem(pointer)!=0){
+              currentNode=currentNode.jumpPtr
+            }
+          }
+          case bfdsl.X => {
+            if(mem(pointer)==0){
+              currentNode=currentNode.jumpPtr
+            }
+          }
+          case bfdsl.C => {
+            if(mem(pointer)!=0){
+              currentNode=currentNode.jumpPtr
+            }
+          }
+          case _ => ;
+        }
+       currentNode=currentNode.nextNode
+      }
+      //println(mem.mkString("<", ",", ">"))      
+    }
+    def A(word:StateWord) ={
+      nodeupdate(bfdsl.A)
+      nodeupdate(word)
+      if(word.eq(bfdsl.END))
+        eval
+      this
+    }
+    def +(word:StateWord) ={
+      nodeupdate(bfdsl.A)
+      nodeupdate(word)
+      if(word.eq(bfdsl.END))
+        eval
+      this
+    }
+    def + ={
+      nodeupdate(bfdsl.A)     
       this
     }
     def A = {
-      words.add(bfdsl.A)
+      nodeupdate(bfdsl.A)
       this
     }
     def M(word:StateWord) = {
-      words.add(bfdsl.M)
-      words.add(word)
-      word match{
-        case bfdsl.END => eval
-        case _ =>;
-      }
+      nodeupdate(bfdsl.M)
+      nodeupdate(word)
+      if(word.eq(bfdsl.END))
+        eval
       this
     }
     def M ={
-     words.add(bfdsl.M)
+     nodeupdate(bfdsl.M)
       this
     }
     def P(word:StateWord) = {
-      words.add(bfdsl.P)
-      words.add(word)
-      word match{
-        case bfdsl.END => eval
-        case _ =>;
-      }
+      nodeupdate(bfdsl.P)
+      nodeupdate(word)
+      if(word.eq(bfdsl.END))
+        eval
       this
     }
     def P = {
-      words.add(bfdsl.P)
+      nodeupdate(bfdsl.P)
       this
     }
     def L(word:StateWord) = {
-      words.add(bfdsl.L)
-      words.add(word)
-      word match{
-        case bfdsl.END => eval
-        case _ =>;
-      }
+      nodeupdate(bfdsl.L)
+      nodeupdate(word)
+      if(word.eq(bfdsl.END))
+        eval
       this
     }
     def L ={
-      words.add(bfdsl.L)
+      nodeupdate(bfdsl.L)
       this
     }
     def R(word:StateWord) ={
-      words.add(bfdsl.R)
-      words.add(word)
-      word match{
-        case bfdsl.END => eval
-        case _ =>;
-      }
+      nodeupdate(bfdsl.R)
+      nodeupdate(word)
+      if(word.eq(bfdsl.END))
+        eval
       this
     }
     def R={
-      words.add(bfdsl.R)
+      nodeupdate(bfdsl.R)
       this
     }
     def X(word:StateWord) = {
-      words.add(bfdsl.LS)
-      words.add(word)
-      word match{
-        case bfdsl.END => eval
-        case _ =>;
-      }
+      nodeupdate(bfdsl.X)
+      nodeupdate(word)
+      if(word.eq(bfdsl.END))
+        eval
       this
     }
     def X = {
-      words.add(bfdsl.LS)
+      nodeupdate(bfdsl.X)
       this
     }
     def C(word:StateWord) ={
-      words.add(bfdsl.LE)
-      words.add(word)
-      word match{
-        case bfdsl.END => eval
-        case _ =>;
-      }
+      nodeupdate(bfdsl.C)
+      nodeupdate(word)
+      if(word.eq(bfdsl.END))
+        eval
       this
     }
     def C ={
-      words.add(bfdsl.LE)
-    }
-    def eval ={
-      for(arg<-words.toArray()){
-        arg match {
-          case bfdsl.A => print("+")
-          case bfdsl.M => print("-")
-          case bfdsl.P => print(".")
-          case bfdsl.I => print(",")
-          case bfdsl.L => print("<")
-          case bfdsl.R => print(">")
-          case bfdsl.LS => print("[")
-          case bfdsl.LE => print("]")
-          case bfdsl.X => print("[")
-          case bfdsl.C => print("]")
-        }
-      }
-        
-    }
-    
-    
-    
-    
-    def LS(words:StateWord*) = {
-      var i = 0
-      while(i<words.size){
-        words(i) match {
-          case bfdsl.A => mem(pointer)+=1
-          case bfdsl.M => {
-            if( mem(pointer)>0)
-              mem(pointer)-=1
-            else
-              mem(pointer)=0
-          }
-          case bfdsl.R => pointer +=1
-          case bfdsl.L => pointer -=1
-          case bfdsl.P => print(mem(pointer).asInstanceOf[Char])
-          case bfdsl.LS => {
-            i = i+ LSR(words.toArray.drop(i))
-          }
-          case bfdsl.LE => {
-            if (mem(pointer)==0) 
-              i= words.size+1
-            else
-              i = -1
-          }
-        }
-        i+=1
-      }
+      nodeupdate(bfdsl.C)
       this
     }
     def E(word:StateWord) = {
       this
     }
     def END ={
+      nodeupdate(bfdsl.END)
       eval
       this
     }
-    def Lx(words:StateWord*):StateWord ={
-       var i = 0
-      // println("IN A LOOP")
-     if(mem(pointer)!=0)
-      while(i<words.size){
-        
-        words(i) match {
-          case bfdsl.A => mem(pointer)+=1
-          case bfdsl.M => {
-            //if( mem(pointer)>0)
-              mem(pointer)-=1
-            //else
-            //  mem(pointer)=0
-          }
-          case bfdsl.R => pointer +=1
-          case bfdsl.L => pointer -=1
-          case bfdsl.P => print(mem(pointer).asInstanceOf[Char])
-          case bfdsl.LS => {
-           // println("Found the next nested Loop")
-            var x =findmatch(words.toArray,i)
-            if(mem(pointer)==0)
-              i=x
-            else
-              i = i+LSR(words.toArray.slice(i+1,x+1))+1
-          }
-          case bfdsl.LE => {
-            //println("Mem at Pointer= "+mem(pointer))
-            if(mem(pointer)>100)i/0
-            if (mem(pointer)==0)
-              i= words.size+1
-            else 
-              i= -1
-          }
-        }
-        i+=1
-      }
-       
-      return bfdsl.NULL
+    def fun(word:StateWord) = {
+      nodeupdate(bfdsl.FUN)
+      nodeupdate(word)
+      this
     }
-    
-    def LSR(words:Array[StateWord]):Int = {
-     // println("Another Loop Deep "+ words(0))
-    
-      var i = 0
-      while(true) {
-       // println(mem.mkString("<", ",", ">"))
-        words(i) match {
-          case bfdsl.A => mem(pointer)+=1
-          case bfdsl.M => {
-            if( mem(pointer)>0)
-              mem(pointer)-=1
-            else
-              mem(pointer)=0
-          }
-          case bfdsl.R => pointer +=1
-          case bfdsl.L => pointer -=1
-          case bfdsl.P => print(mem(pointer).asInstanceOf[Char])
-          case bfdsl.LS => {
-            var x = findmatch(words.toArray,i)
-            if(mem(pointer)==0)
-              i=x
-            else{
-              //println(mem(pointer))
-             i = i+LSR(words.toArray.slice(i+1,x+1))+1
-            }
-          }
-          case bfdsl.LE => {
-            if (mem(pointer)==0){
-             //0/0
-              return i
-            }
-            else
-              i= -1
-          }
-        }
-        i+=1
-      }
-      return 0
+    def fun = {
+      nodeupdate(bfdsl.FUN)
+      this
     }
-    def matchCase(word:StateWord) ={
-      word match{
-        case bfdsl.A => mem(pointer)+=1
-        case bfdsl.M => mem(pointer)-=1
-        case bfdsl.P => print(mem(pointer).asInstanceOf[Char])
-        case bfdsl.R => pointer +=1
-        case bfdsl.L => pointer -=1
-        case bfdsl.| =>;
-      }
+    def N(word:StateWord)= {
+      nodeupdate(word)
+      this      
     }
-    def findmatch(words:Array[StateWord],start:Int):Int={
-      var i =start+1
-      var count =1
-      while(count!=0){
-        words(i) match{
-          case bfdsl.LS => count+=1
-          case bfdsl.LE => count-=1
-          case _ => 0
-        }
-        i+=1
-      }
-       return i-1
-    
+    def RESET ={
+      mem=Array.ofDim(3000)
+      pointer = 0
+      firstNode= new node(NULL)
+      currentNode= new node(NULL)
     }
      
   }
-
   
+  
+  implicit def stringtoFun(s:Char) ={
+    START.funChar=s
+    FUN
+  }
   
 }
