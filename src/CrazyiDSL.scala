@@ -16,13 +16,16 @@ object tester extends BF{
     var me:Array[Int] = Array.ofDim(30000)
     var po = 0
     
-    expand(""">++++++++[-<+++++++++>]<.>>+>-[+]++>++>+++[>[->+++<<+++>]<<]>-----.>->+++..+++.>-.<<+[>[+>+]>>]<--------------.>>.+++.------.--------.>+.>+.""" )
+    //expand(""">++++++++[-<+++++++++>]<.>>+>-[+]++>++>+++[>[->+++<<+++>]<<]>-----.>->+++..+++.>-.<<+[>[+>+]>>]<--------------.>>.+++.------.--------.>+.>+.""" )
     //println(me.mkString("<", ",", ">"))
-    //START A A A R X A A C END
-  START A A A A A A A A X R A A A A X R A A R A A A R A A A R A L L L L M C R A R A R
+    //START A A A A A M FUN 'x' A 'c'
+  
+    
+    
+    START A A A A A A A A X R A A A A X R A A R A A A R A A A R A L L L L M C R A R A R
   M R R A X L C L M C R R P R M M M P A A A A A A A P P A A A P R R P L M P L P A A A P M
   M M M M M P M M M M M M M M P R R A P R A A P END;
-    
+   
 START RESET; 
 
 START A A A A A A A A A A A A A X M R A A R R R A A A A A R A A R A L L L L L L C R R R R R A A A A A A R M M M R R R R R R R R R R A A A A A A A A A A A A A A A X X 
