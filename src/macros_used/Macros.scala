@@ -1,4 +1,4 @@
-package macros
+package macros_used
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox
 
