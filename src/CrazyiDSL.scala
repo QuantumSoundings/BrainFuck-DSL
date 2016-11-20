@@ -1,5 +1,4 @@
 import bfdsl._
-import Macros._
 import scala.language.postfixOps
 
 
@@ -13,8 +12,6 @@ import scala.language.postfixOps
 object tester extends BF{  
   def main(args: Array[String]):Unit ={
     println("Running tester");
-    var me:Array[Int] = Array.ofDim(30000)
-    var po = 0
     
     //expand(""">++++++++[-<+++++++++>]<.>>+>-[+]++>++>+++[>[->+++<<+++>]<<]>-----.>->+++..+++.>-.<<+[>[+>+]>>]<--------------.>>.+++.------.--------.>+.>+.""" )
     //println(me.mkString("<", ",", ">"))
