@@ -27,3 +27,5 @@ object Y extends StateWord   // ;
 
 object END extends StateWord // Ends the program
 object FUN extends StateWord // Designates a function
+
+object clear extends StateWord

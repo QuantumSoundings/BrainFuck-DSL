@@ -23,12 +23,54 @@ object tester extends BF{
         println("%f seconds".format(micros))
         result
       }
-    
-    
+        /*START R A A A A A A A A A A X L A A A A A A A A A A R M C L M R R R R R A A A X R A A A R A A A L L M C L L L L A L X R X R A ;
+START R A L L M C R R X M L L A R R C A A A A R A L X M L M R C L X X M C R R M L L C R R X X M C L L A R R C L L X X M C R R ;
+START R R R R X X M C L A A A A A A A A A A L M R R C L M X R A R A L L M C R X L A R M C A R X X M C L M R C L L L L L L L L ;
+START L M R R C L X R A R A L L M C R R X M L L A R R C A R A L X M L M R C L X X M C R R M L L C R R X X M C L L A R R C L L ;
+START L X R R A R A L L L M C R R R X M L L L A R R R C A A R A L X M L M R C L X X M C R R M L L C R R X X M C L L A R R C L ;
+START L X R A L X M C C L X R R A L L X M C C R R X L L A R R X M C C L L L X R R A R A L L L M C R R R X M L L L A R R R C A ;
+START A A A R A L X M L M R C L X X M C R R M L L C R R X X M C L L A R R C L L X R A L X M C C L X R R A L L X M C C R R X L ;
+START L A R R X M C C L L X X M C R R R A A A A A A A A X R R A A A A A A L L M C R X L A A A A A A A A X R A A A A A A L M C ;
+START R P L A A A A A A A A X R M M M M M M L M C R X L L A R R M C C R P L L A A A A A A A A X R R M M M M M M L L M C L X M ;
+START R R A L L C L A A A A A A A A X L A A A A R M C L P R A A A A A A A X R A A A A A A A A A L M C R A A A P L A A A A A X ;
+START R A A A A A A A A A L M C R P A A A A A P P M M M M M M M M P M M M M M M M P A A A A A A A A A A A A A A R R X R R R A ;
+START R A L L L L M C R R R R X M L L L L A R R R R C R A L X M L M R C L X X M C R R M L L C R R X X M C L L A R R C L L L L ;
+START X R R R A R A L L L L M C R R R R X M L L L L A R R R R C A R A L X M L M R C L X X M C R R M L L C R R X X M C L L A R ;
+START R C L L L X R R A L L X M C C R X R A L X M C C A A R R A L X M L M R C L X X M C R R M L L C R R X X M C L L A R R C L ;
+START A L X X M C R M L C R X L L L L L L L P R R R R R R R X M C C L L L L L L L L L P R R M M M M P M M M M M M M M M P L L ;
+START P R R M M M M P A A A P P A A A A A A A A A A A A A P X M C L L X M C C L X R A R A L L M C R R X M L L A R R C A R A L ;
+START X M L M R C L X X M C R R M L L C R R X X M C L L A R R C L L L X R R A R A L L L M C R R R X M L L L A R R R C A A A A ;
+START R A L X M L M R C L X X M C R R M L L C R R X X M C L L A R R C L L X R A L X M C C L X R R A L L X M C C R R X L L A R ;
+START R X M C C L L X X M C R A A A A A A A A X L A A A A R M C L P R A A A A A A A A A A X R A A A A A A A A A A A L M C R A ;
+START P M P L L P R R A A A A A A P M M M M M M M M M M M M P M M M P L L P R A A A A A A X R A A A L M C R P L A A A A A A X ;
+START R M M M M L M C R A A P A A A A A A A A A A A P P X M C L L X M C A A A A A A A A A A P X M C C L X R A R A L L M C R R ;
+START X M L L A R R C A A A R A L X M L M R C L X X M C R R M L L C R R X X M C L L A R R C L L X X M C A A A A A A A A A A P ;
+START R A A A A A A A A A X R A A A A A A A A A L M C R A A A P A A A A A A A A A A A A A P A A A A A A A A A A P M M M M M M ;
+START P L A A A A A A A A X R R A A A A L L M C R R P L A A A A A A A A A A P M P M M M M M M M M M P R P L M P A A A A A A A ;
+START A A A A P A A A A A A A A P M M M M M M M M M P R P L M M M M M M M M M M M M M P A A A A A A A A A A A A A P M M M M M ;
+START M M M M M P R P L A A A A A A A A A A A A P M M M M M M M M M M M M M M M P L A A A X R A A A A A A L M C R P P R P L M ;
+START M M M M M M M M M P A A A A A A A A A A A P R P L L A A A X R M M M M M M L M C R M P A A A A A A A A A A A A A A A A A ;
+START P M M M P A A A A A A P M M M M M M M P M M M M M M M M M M P X M C R X M C L L L P X M C C L X R A R A L L M C R R X M ;
+START L L A R R C A A A A R A L X M L M R C L X X M C R R M L L C R R X X M C L L A R R C L L X X M C A A A A A A A A A A P X ;
+START M C L X M C R C L A L C END;
+START RESET;
+time{
+START R A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A 
+START X L A R R R R R R R R A A A A A A A A A A L L L L L L L M C R A A A A A X L A A A A A A A A A R M C A R R R R R R A X L L A A A X R R X M L C L X R C L M C R R 
+START X R A R C L X L C R C R X X M R R R R A L L L L C R R R A A A R M C L X L L L L C L L L L L L L L A X M R R R R R R R R R R R R X L A X M R R R R A L L L L C R 
+START R R R R C L L L L X R R R R R X L L L L A R R R R M C L L L L L M X L L A A A A A A A A A A R R M C R R R X L L X L A L L A R R R M C L X R A L M C L A A L L A 
+START R R R R R R M C L L X M C L L M L X M R R A L M X R R R C R X X L A R M C R A R R C L L L L L C R X M C R A L L L M X R R A L L M C L C L L L L A R R R R R R R 
+START R X M C R X L L L A R R R M C L L A A A A A A A A A A L X M R R A L M X R R R C R X X L A R M C R A R R C L L L L L C R X M C R A R X L L A L A R R R M C L L L 
+START L A L A R R X M X M X M X M X M X M X M X M X M L M R X M L A L M R R C C C C C C C C C C L X A A A A A X L L L A A A A A A A A L A A A A A A A A R R R R M C L 
+START L L L A L M R R R R X R A L L L A A A A A A A A A L M R R R M C L L L L L X R R A L L M C A L X M R M L C R X R R P L L L L X A P X M C C R R M C R X R R P L L 
+START M C R X M C R X M C R R R X R R X L L L L L L L L A R R R R R R R R M C L L M C C R R X M C L L L X M C L L L L L L L L C A A A A A A A A A A P END;
+}*/
+START RESET;
+    time{
     START A A A A A A A A X R A A A A X R A A R A A A R A A A R A L L L L M C R A R A R
   M R R A X L C L M C R R P R M M M P A A A A A A A P P A A A P R R P L M P L P A A A P M
   M M M M M P M M M M M M M M P R R A P R A A P END;
-   
+    } 
 START RESET; 
 time{
 START A A A A A A A A A A A A A X M R A A R R R A A A A A R A A R A L L L L L L C R R R R R A A A A A A R M M M R R R R R R R R R R A A A A A A A A A A A A A A A X X 

@@ -2,7 +2,6 @@ package bfdsl
 import java.util.ArrayList
 import scala.collection.mutable.Stack
 
-
 class node(word:StateWord){
   var value=word
   var nextNode: node = _;
@@ -11,12 +10,11 @@ class node(word:StateWord){
 }
 
 class BF {   
-  var mem:Array[Int] = Array.ofDim[Int](3000)
-  var functionMap = scala.collection.mutable.Map[StateWord,node]()
-  
+  var mem:Array[Int] = Array.ofDim[Int](3000)  
   var pointer =0
-  var funChar = '-' 
+
   object START {
+    var functionMap = scala.collection.mutable.Map[StateWord,node]() 
     var firstNode:node = {var t = new node(N);t.nextNode=new node(N);t}
     var currentNode:node = firstNode.nextNode
     var tempNode:node = currentNode
@@ -60,29 +58,25 @@ class BF {
       this
     }   
     def eval :Unit ={
-      while(!currentNode.value.eq(bfdsl.END)){
-        //println(currentNode.count+"\n")
+      while(true){//!currentNode.value.eq(bfdsl.END)){
+        //println(currentNode.count+"\n"
+        //println(currentNode.value)
         currentNode.value match {
-          case bfdsl.A => {mem(pointer)+=currentNode.count;}
-          case bfdsl.M => {mem(pointer)-=currentNode.count;}
-          case bfdsl.P => {print(mem(pointer).asInstanceOf[Char]);}
-          case bfdsl.I => {print(",");}
-          case bfdsl.L => {pointer-=currentNode.count;}
-          case bfdsl.R => {pointer+=currentNode.count;}
-          case bfdsl.V => {if(mem(pointer)!=0)currentNode=currentNode.jumpPtr}
-          case bfdsl.Z => {if(mem(pointer)==0)currentNode=currentNode.jumpPtr}
-          case bfdsl.X => {if(mem(pointer)==0)currentNode=currentNode.jumpPtr}
-          case bfdsl.C => {if(mem(pointer)!=0)currentNode=currentNode.jumpPtr}
-          case bfdsl.F => {if(mem(pointer)==0)currentNode = currentNode.jumpPtr}
-          case bfdsl.T => currentNode=currentNode.jumpPtr
-          case bfdsl.B => currentNode=currentNode.jumpPtr
-          case bfdsl.O => currentNode=currentNode.jumpPtr
-          case bfdsl.FUN=> {
-            tempNode=currentNode
-            currentNode=functionMap.get(currentNode.value).get
-            eval
-            currentNode=tempNode
-          }
+          case bfdsl.A => {mem(pointer)+=currentNode.count ;currentNode=currentNode.nextNode}
+          case bfdsl.M => {mem(pointer)-=currentNode.count;currentNode=currentNode.nextNode}
+          case bfdsl.P => {print(mem(pointer).asInstanceOf[Char]);currentNode=currentNode.nextNode}
+          case bfdsl.L => {pointer-=currentNode.count;currentNode=currentNode.nextNode}
+          case bfdsl.R => {pointer+=currentNode.count;currentNode=currentNode.nextNode}
+          case bfdsl.X|bfdsl.Z|bfdsl.F => {if(mem(pointer)==0)currentNode=currentNode.jumpPtr.nextNode;else currentNode=currentNode.nextNode}
+          case bfdsl.C|bfdsl.V => {if(mem(pointer)!=0)currentNode=currentNode.jumpPtr.nextNode;else currentNode=currentNode.nextNode}        
+          //case bfdsl.V => {if(mem(pointer)!=0)currentNode=currentNode.jumpPtr.nextNode}
+          //case bfdsl.Z => {if(mem(pointer)==0)currentNode=currentNode.jumpPtr.nextNode}          
+          //case bfdsl.F => {if(mem(pointer)==0)currentNode=currentNode.jumpPtr.nextNode}
+          case bfdsl.T => currentNode=currentNode.jumpPtr.nextNode
+          case bfdsl.B => currentNode=currentNode.jumpPtr.nextNode
+          case bfdsl.O => currentNode=currentNode.jumpPtr.nextNode
+          case bfdsl.I => {print(",");currentNode=currentNode.nextNode}
+          case bfdsl.END => return;
           case _ => {
             if(functionMap.contains(currentNode.value)){
               tempNode=currentNode
@@ -90,14 +84,16 @@ class BF {
               eval
               currentNode=tempNode
             }
+            currentNode=currentNode.nextNode
           }
         }
-        currentNode=currentNode.nextNode
+        //currentNode=currentNode.nextNode
       }
       //println(mem.mkString("<", ",", ">"))      
     }
 
     // Program control Functions 
+
     def A(word:StateWord) ={ nodeupdate(bfdsl.A); nodeupdate(word)}
     def A = {nodeupdate(bfdsl.A)}
     
@@ -153,9 +149,7 @@ class BF {
       nodeupdate(bfdsl.END)
     }
     def FUN(c:Char) = {
-      funChar=c
       nodeupdate(bfdsl.FUN)
-      //this
     }
     def fun(c:Char) = {
       bfdsl.FUN
@@ -171,8 +165,5 @@ class BF {
       currentNode= firstNode.nextNode  
     }   
   }
-  implicit def chartoFun(c:Char) ={
-    funChar=c
-    bfdsl.FUN
-  }
+
 }
