@@ -1,26 +1,11 @@
 import bfdsl._
-import Macros._
 import scala.language.postfixOps
 
-
-/*object tester extends bftake2 {
-  def main(args: Array[String]):Unit = {
-    var s ="s"  
-   // var | = 10
-    10 add|add|
-}
-}*/
 object tester extends BF{  
   def main(args: Array[String]):Unit ={
     println("Running tester");
     var me:Array[Int] = Array.ofDim(30000)
     var po = 0
-    
-    //expand(""">++++++++[-<+++++++++>]<.>>+>-[+]++>++>+++[>[->+++<<+++>]<<]>-----.>->+++..+++.>-.<<+[>[+>+]>>]<--------------.>>.+++.------.--------.>+.>+.""" )
-    //println(me.mkString("<", ",", ">"))
-    //START A A A A A M FUN 'x' A 'c'
-  
-    
     
     START A A A A A A A A X R A A A A X R A A R A A A R A A A R A L L L L M C R A R A R
   M R R A X L C L M C R R P R M M M P A A A A A A A P P A A A P R R P L M P L P A A A P M
@@ -173,12 +158,6 @@ START R R R C R X M C A L C C A R X M L X R R R R R R R R R C L L L L L L L L C 
 START A X M X M R R R R R R R R R A L L L L L L L L L C R R R R R R R R R C R R R R R M R R R R R R R R R R R R R R R R R R R R R R R R R R R M L L L L L L X L L L L 
 START L L L L L C C R R R C;
 START END
-    
-    
- /*S R|R|R|R|R|R|R|A|A|A|A|A|A|A|A|A|A|R|A|R|A|Lx(
-LS,A,A,A,A,A,LS,R,A,A,A,A,A,A,A,A,L,M,LE,R,P,L,A,A,A,A,A,A,LS,R,M,M,M,M,M,M,M,M,L,M,LE,A,L,L,L,LE,R,P,R,R,LS,
-LS,M,LE,L,LS,R,A,L,M,LE,R,R,LS,L,L,A,R,A,R,M,LE,L,LS,R,A,L,M,LS,R,A,L,M,LS,R,A,L,M,LS,R,A,L,M,LS,R,A,L,M,LS,R,A,L,M,
-LS,R,A,L,M,LS,R,A,L,M,LS,R,A,L,M,LS,R,LS,M,LE,R,A,R,A,L,L,L,M,LS,R,A,L,M,LE,LE,LE,LE,LE,LE,LE,LE,LE,LE,LE,A,R,R,R,LE,L,L,L,LE
-)*/
+   
   }
 }

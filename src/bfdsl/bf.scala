@@ -5,6 +5,7 @@ class node(word:StateWord){
   var nextNode: node = _;
   var jumpPtr : node = _;
   var funchar:Char = _;
+  var count:Int = _;
 }
 
 class BF { 
@@ -21,16 +22,25 @@ class BF {
   var funChar = '-' 
   object START {         
     def nodeupdate(word:StateWord)={
-      currentNode.nextNode=new node(word)
-      currentNode = currentNode.nextNode
-      if(currentNode.value.eq(bfdsl.X))
-        parenstack.push(currentNode)
-      else if (currentNode.value.eq(bfdsl.C)){
-        currentNode.jumpPtr=parenstack.pop()
-        currentNode.jumpPtr.jumpPtr=currentNode
+      if(currentNode.value.eq(word) && ((currentNode.value.eq(bfdsl.A)) || (currentNode.value.eq(bfdsl.M)) || (currentNode.value.eq(bfdsl.L)) || (currentNode.value.eq(bfdsl.R)) )   )             
+      {
+        currentNode.count += 1
       }
-      if(word.eq(bfdsl.END))
-        eval
+      else
+      {
+        currentNode.nextNode=new node(word)
+        currentNode = currentNode.nextNode
+        currentNode.count = 1
+        if(currentNode.value.eq(bfdsl.X))
+          parenstack.push(currentNode)
+        else if (currentNode.value.eq(bfdsl.C)){
+          currentNode.jumpPtr=parenstack.pop()
+          currentNode.jumpPtr.jumpPtr=currentNode
+        }
+        if(word.eq(bfdsl.END))
+          eval
+        this
+      }
       this
     }   
     def eval ={
@@ -39,12 +49,12 @@ class BF {
       while(!currentNode.value.eq(bfdsl.END)){
         //println(currentNode.value)
         currentNode.value match {
-          case bfdsl.A => mem(pointer)+=1
-          case bfdsl.M => mem(pointer)-=1
+          case bfdsl.A => mem(pointer)+=1*currentNode.count
+          case bfdsl.M => mem(pointer)-=1*currentNode.count
           case bfdsl.P => print(mem(pointer).asInstanceOf[Char])
           case bfdsl.I => print(",")
-          case bfdsl.L => pointer-=1
-          case bfdsl.R => pointer+=1
+          case bfdsl.L => pointer-=1*currentNode.count
+          case bfdsl.R => pointer+=1*currentNode.count
           case bfdsl.V => {
             if(mem(pointer)!=0){
               currentNode=currentNode.jumpPtr
