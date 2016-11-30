@@ -23,9 +23,18 @@ object E extends StateWord   // )
 //Functions
 object U extends StateWord   // :
 object Y extends StateWord   // ;
+//Available function names
+object f0 extends StateWord
+object f1 extends StateWord
+object f2 extends StateWord
+object f3 extends StateWord
+object f4 extends StateWord
+object f5 extends StateWord
+object f6 extends StateWord
+object f7 extends StateWord
+object f8 extends StateWord
+object f9 extends StateWord
 
 
 object END extends StateWord // Ends the program
-object FUN extends StateWord // Designates a function
 
-object clear extends StateWord
