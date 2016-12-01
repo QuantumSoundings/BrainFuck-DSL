@@ -1,5 +1,5 @@
 # BrainFuck-DSL
-Here is the repo for our version of both an Internal and an External Brainfuck dsl in scala.
+Here is the repo for our versions of both an Internal and an External Brainfuck dsl in scala.
 Team Members:
 
 Jordan Howe
