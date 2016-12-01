@@ -35,6 +35,12 @@ class BF {
          currentNode.nextNode=new node(word)
          currentNode = currentNode.nextNode
        }
+       def check:Unit ={
+         if(parenstack.isEmpty&&ifstack.isEmpty&&thenstack.isEmpty&&revparenstack.isEmpty&&breakstack.isEmpty&&contstack.isEmpty)
+           return;
+         else
+           println("Warning there are unmatched control flow commands")
+       }
        def fixstacks = {
          if(breakstack.head.isEmpty) breakstack.pop()
          else { while(!breakstack.head.isEmpty){ breakstack.head.pop().jumpPtr = currentNode} }
@@ -58,7 +64,7 @@ class BF {
         case (_,bfdsl.U) => { fNode=currentNode; common;}
         case (bfdsl.U,_) => { functionMap+=(word -> new node(N));currentNode=functionMap.get(word).get;}
         case (_,bfdsl.Y) => { currentNode.nextNode=new node(bfdsl.END);currentNode=fNode;}
-        case (_,bfdsl.END)=>{ common;currentNode=firstNode;eval(new node(N));}
+        case (_,bfdsl.END)=>{ common;currentNode=firstNode;check;eval(new node(N));}
         case (_,_) => {common;}
       }
       this
@@ -136,6 +142,12 @@ class BF {
       currentNode = firstNode.nextNode
       tempNode=currentNode
       fNode=currentNode
+      parenstack = new Stack[node]
+      ifstack = new Stack[node]
+      thenstack = new Stack[node]
+      revparenstack = new Stack[node]
+      breakstack = new Stack[Stack[node]]
+      contstack = new Stack[Stack[node]]
       println("")
     }   
   }

@@ -1,3 +1,4 @@
+package macros1;
 
 
 class Base64 {
